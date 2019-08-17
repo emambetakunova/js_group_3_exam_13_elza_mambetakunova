@@ -6,6 +6,7 @@ const config = require('./config');
 const users = require('./app/users');
 const places = require('./app/places');
 const reviews = require('./app/reviews');
+const photo = require('./app/photos');
 
 const app = express();
 
@@ -18,7 +19,8 @@ const port = 8000;
 mongoose.connect(config.dbUrl, config.mongoOptions).then(() => {
   app.use('/users', users);
   app.use('/places', places);
-  app.use('/reviews', reviews);
+  app.use('/review', reviews);
+  app.use('/photo', photo);
 
   app.listen(port, () => {
     console.log(`Server started on ${port} port`);
