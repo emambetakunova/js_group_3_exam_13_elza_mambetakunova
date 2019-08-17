@@ -5,6 +5,7 @@ import Register from "./containers/Register/Register";
 import Login from "./containers/Login/Login";
 import AddPlace from "./containers/AddPlace/AddPlace";
 import PlaceBuilder from "./containers/PlaceBuilder/PlaceBuilder";
+import FullPlace from "./containers/FullPlace/FullPlace";
 
 const Routes = ({user}) => {
   return (
@@ -13,6 +14,7 @@ const Routes = ({user}) => {
       <Route path="/register" exact component={Register}/>
       <Route path="/login" exact component={Login}/>
       <Route path="/add" exact component={AddPlace}/>
+      <Route path="/places/:id" exact component={FullPlace}/>
     </Switch>
   );
 };

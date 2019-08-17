@@ -17,6 +17,7 @@ import {loadFromLocalStorage, saveToLocalStorage} from "./store/localStorage";
 import userReducer from "./store/reducers/userReducer";
 import placeReducer from "./store/reducers/placeReducer";
 import reviewReducer from "./store/reducers/reviewReducer";
+import photoReducer from "./store/reducers/photoReducer";
 
 const history = createBrowserHistory();
 
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   router: connectRouter(history),
   users: userReducer,
   places: placeReducer,
-  reviews: reviewReducer
+  reviews: reviewReducer,
+  photos: photoReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
