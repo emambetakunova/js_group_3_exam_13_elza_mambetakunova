@@ -19,9 +19,8 @@ exports.config = {
   gherkin: {
     features: './features/*.feature',
     steps: [
-      './step_definitions/register.js',
       './step_definitions/login.js',
-      './step_definitions/logout.js',
+      './step_definitions/addNewPlace.js'
     ]
   },
   plugins: {
