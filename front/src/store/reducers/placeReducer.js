@@ -2,7 +2,7 @@ import {FETCH_PLACE_SUCCESS, FETCH_PLACE_FAILURE, FETCH_ONE_PLACE_SUCCESS, FETCH
 
 const initialState = {
   places: [],
-  place: null,
+  place: [],
   error: null
 };
 

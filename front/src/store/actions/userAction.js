@@ -22,7 +22,7 @@ export const logoutUser = () => {
       () => {
         dispatch({type: LOGOUT_USER});
         dispatch(push('/'));
-        NotificationManager.success('Вы успешно вышли')
+        NotificationManager.success('Logout')
       },
       error => {
         NotificationManager.error('Could not logged!')
@@ -37,7 +37,7 @@ export const registerUser = userData => {
       response => {
         dispatch(registerUserSuccess(response.data.user));
         dispatch(push('/'));
-        NotificationManager.success('Успешно зарегистрированы')
+        NotificationManager.success('Success')
       },
       error => {
         if (error.response) {
@@ -56,7 +56,7 @@ export const loginUser = userData => {
       response => {
         dispatch(loginUserSuccess(response.data.user));
         dispatch(push('/'));
-        NotificationManager.success('Успешно авторизовались')
+        NotificationManager.success('Success')
       }, error => {
         if (error.response) {
           dispatch(loginUserFailure(error.response.data))
