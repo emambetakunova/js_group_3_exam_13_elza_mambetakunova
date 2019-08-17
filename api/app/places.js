@@ -5,6 +5,7 @@ const path = require('path');
 const nanoid = require('nanoid');
 
 const auth = require('../middleWare/auth');
+const permit = require('../middleWare/permit');
 const Place = require('../models/Place');
 
 const storage = multer.diskStorage({
@@ -67,6 +68,17 @@ router.post('/addPhoto/:id', [auth, upload.array('images', 10)], async (req, res
   } catch (error) {
     return res.status(400).send(error)
   }
+});
+
+router.delete('/:id', async (req, res) => {
+  const place = await Place.findOne({_id: req.params.id});
+
+  if (!place) {
+    return res.sendStatus(403);
+  }
+
+  await place.remove();
+  res.send({message: "OK"})
 });
 
 

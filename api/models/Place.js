@@ -23,15 +23,12 @@ const PlaceSchema = new Schema({
     ref: 'User',
     required: true
   },
-  reviews: {
-    type: Array
-  },
   overallRatings: {
     type: Number
   },
-  qualityRating: [{userId: String, rating: Number}],
-  serviceRating: [{userId: String, rating: Number}],
-  interiorRating: [{userId: String, rating: Number}]
+  qualityRating:  Number,
+  serviceRating: Number,
+  interiorRating: Number
 });
 
 const Place = mongoose.model('Place', PlaceSchema);

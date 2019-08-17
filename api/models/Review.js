@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ReviewSchema = new Schema({
-  review: {
+  message: {
     type: String,
     require: true
   },
@@ -20,9 +20,9 @@ const ReviewSchema = new Schema({
   overallRatings: {
     type: Number
   },
-  qualityRating: [{userId: String, rating: Number}],
-  serviceRating: [{userId: String, rating: Number}],
-  interiorRating: [{userId: String, rating: Number}]
+  qualityRating: Number,
+  serviceRating: Number,
+  interiorRating: Number
 });
 
 const Review = mongoose.model('Review', ReviewSchema);
