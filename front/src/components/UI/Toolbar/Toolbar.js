@@ -9,7 +9,7 @@ const Toolbar = ({user,logout}) => {
   return (
     <Fragment>
       <Navbar color="info" light expand="md">
-        <NavbarBrand tag={RouterNavLink} to={user && user.role === 'admin' ? "/admin" : "/"}>Recipes</NavbarBrand>
+        <NavbarBrand tag={RouterNavLink} to={user && user.role === 'admin' ? "/admin" : "/"}>Places</NavbarBrand>
         <Nav className="ml-auto" navbar>
           {user ? <UserMenu user={user} logout={logout}/>: <AnonymousMenu/>}
         </Nav>

@@ -9,7 +9,7 @@ const UserMenu = ({user, logout}) => (
     </DropdownToggle>
     <DropdownMenu right>
       <DropdownItem>
-        <NavLink to='/add_recipe'>Add recipe</NavLink>
+        <NavLink to='/add'>Add new place</NavLink>
       </DropdownItem>
       <DropdownItem divider />
       <DropdownItem onClick={logout}>
