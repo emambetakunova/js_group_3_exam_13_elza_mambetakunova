@@ -36,19 +36,22 @@ const run = async () => {
       user: users[0],
       title: 'Bellagio',
       description: 'Redefining the concept of buffet dining with impressive live-action cooking stations and an impeccable selection of cuisines unmatched in Las Vegas.',
-      image: 'place.jpeg'
+      image: 'place.jpeg',
+      images: 'place.jpeg'
     },
     {
       user: users[0],
       title: 'Tyubeteyka',
       description: 'Tyubeteyka” restaurant is the place of inexpensive and tasty dinner.',
-      image: 'place.jpeg'
+      image: 'place.jpeg',
+      images: 'place.jpeg'
     },
     {
       user: users[0],
       title: 'IT Ibiza',
       description: 'IT Ibiza is not only a restaurant but our daily effort to celebrate beauty, taste and simplicity. ',
-      image: 'place.jpeg'
+      image: 'place.jpeg',
+      images: 'place.jpeg'
     }
   );
 
@@ -56,17 +59,26 @@ const run = async () => {
     {
       user: users[0],
       place: place[0],
-      review: 'So cool!'
+      message: 'So cool!',
+      qualityRating: 2,
+      serviceRating: 0,
+      interiorRating: 3
     },
     {
       user: users[0],
       place: place[1],
-      review: 'Lol!'
+      message: 'Lol!',
+      qualityRating: 2,
+      serviceRating: 0,
+      interiorRating: 3
     },
     {
       user: users[0],
       place: place[1],
-      review: 'So cool!'
+      message: 'So cool!',
+      qualityRating: 2,
+      serviceRating: 0,
+      interiorRating: 3
     }
   );
 
