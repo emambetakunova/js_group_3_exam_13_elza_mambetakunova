@@ -70,15 +70,10 @@ router.post('/addPhoto/:id', [auth, upload.array('images', 10)], async (req, res
   }
 });
 
-router.delete('/:id', async (req, res) => {
-  const place = await Place.findOne({_id: req.params.id});
+router.delete('/:id', [auth, permit('admin')], async (req, res) => {
+  await Place.findByIdAndDelete(req.params.id);
 
-  if (!place) {
-    return res.sendStatus(403);
-  }
-
-  await place.remove();
-  res.send({message: "OK"})
+  res.send('success');
 });
 
 
