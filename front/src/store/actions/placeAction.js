@@ -62,7 +62,7 @@ export const addImagesForPlace = (data, id) => {
 
 export const deletePlace = (id) => {
   return dispatch => {
-    return axios.delete('/' + id).then(
+    return axios.delete('/places/' + id).then(
       () => {
         dispatch(deletePlaceSuccess());
         NotificationManager.success('Deleted successfully');
