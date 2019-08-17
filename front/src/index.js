@@ -15,12 +15,14 @@ import App from './App';
 
 import {loadFromLocalStorage, saveToLocalStorage} from "./store/localStorage";
 import userReducer from "./store/reducers/userReducer";
+import placeReducer from "./store/reducers/placeReducer";
 
 const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   router: connectRouter(history),
-  users: userReducer
+  users: userReducer,
+  places: placeReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
