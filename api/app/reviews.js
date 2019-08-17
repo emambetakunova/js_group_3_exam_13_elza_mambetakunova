@@ -14,7 +14,7 @@ router.post('/review/:id', [auth], async (req, res) => {
       message: req.body.message,
       qualityRating: req.body.qualityRating,
       serviceRating: req.body.serviceRating,
-      tasteRatings: req.body.interiorRating
+      interiorRating: req.body.interiorRating
     };
     review.reviews.push(message);
 
