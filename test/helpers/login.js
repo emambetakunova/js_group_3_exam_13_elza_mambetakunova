@@ -12,8 +12,6 @@ const userData = {
   }
 };
 
-
-
 class LoginHelper extends Helper {
 
   async loginAsUser(name) {
@@ -41,7 +39,7 @@ class LoginHelper extends Helper {
     await I.fillField(`//input[@id='username']`, user.username);
     await I.fillField(`//input[@id='password']`, user.password);
 
-    await I.click('//button[@class=btn btn-primary], Login]');
+    await I.click('//button[.="Login"]');
 
     await I.waitForText(`Success`, 2);
   }
