@@ -23,7 +23,7 @@ class PlaceBuilder extends Component {
     const places = this.props.places.map(place => {
       return <Col sm={3} key={place._id}>
         <Card>
-          <PlaceThumbnail image={place.image}/>
+          <PlaceThumbnail image={place.avatar}/>
           <CardBody>
             <CardLink href={`/places/${place._id}`}>{place.title}</CardLink>
           </CardBody>
