@@ -4,6 +4,7 @@ const config = require('./config');
 const User = require('./models/User');
 const Place = require('./models/Place');
 const Review = require('./models/Review');
+const Photo = require('./models/Photo');
 
 const run = async () => {
   await mongoose.connect(config.dbUrl, config.mongoOptions);
@@ -36,22 +37,19 @@ const run = async () => {
       user: users[0],
       title: 'Bellagio',
       description: 'Redefining the concept of buffet dining with impressive live-action cooking stations and an impeccable selection of cuisines unmatched in Las Vegas.',
-      image: 'place.jpeg',
-      images: 'place.jpeg'
+      avatar: 'place.jpeg'
     },
     {
       user: users[0],
       title: 'Tyubeteyka',
       description: 'Tyubeteyka” restaurant is the place of inexpensive and tasty dinner.',
-      image: 'place.jpeg',
-      images: 'place.jpeg'
+      avatar: 'place.jpeg'
     },
     {
       user: users[0],
       title: 'IT Ibiza',
       description: 'IT Ibiza is not only a restaurant but our daily effort to celebrate beauty, taste and simplicity. ',
-      image: 'place.jpeg',
-      images: 'place.jpeg'
+      avatar: 'place.jpeg'
     }
   );
 
@@ -79,6 +77,24 @@ const run = async () => {
       qualityRating: 2,
       serviceRating: 0,
       interiorRating: 3
+    }
+  );
+
+  await Photo.create(
+    {
+      user: users[0],
+      place: place[0],
+      image: 'place.jpeg'
+    },
+    {
+      user: users[0],
+      place: place[1],
+      image: 'place.jpeg'
+    },
+    {
+      user: users[0],
+      place: place[1],
+      image: 'place.jpeg'
     }
   );
 
