@@ -7,6 +7,7 @@ const nanoid = require('nanoid');
 const auth = require('../middleWare/auth');
 const permit = require('../middleWare/permit');
 const Place = require('../models/Place');
+const Photo = require('../models/Photo');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -37,7 +38,25 @@ router.post('/', [auth, upload.single('image')], async (req, res) => {
   }
 });
 
-
+router.post('/:id/addPhoto', [auth, upload.array('images', 10)], async (req, res) => {
+  try {
+    const place = await Place.findById(req.params.id);
+    const photos = [];
+    for (let i = 0; i < req.files.length; i++) {
+      const file = req.files[i].filename;
+      const photo = new Photo({
+            user: req.user._id,
+            place: place,
+            image: file
+          });
+      await photo.save();
+      photos.push(photo);
+    }
+    return res.send(photos)
+  } catch (error) {
+    return res.status(400).send(error)
+  }
+});
 
 router.get('/', async (req, res) => {
   try {
@@ -52,19 +71,6 @@ router.get('/:id', async (req, res) => {
   try {
     const place = await Place.findById(req.params.id).populate('user');
     return res.send(place)
-  } catch (error) {
-    return res.status(400).send(error)
-  }
-});
-
-router.post('/addPhoto/:id', [auth, upload.array('images', 10)], async (req, res) => {
-  try {
-    const images = await Place.findById(req.params.id).populate('user');
-    for (let i = 0; i < req.files.length; i++) {
-      images.images.push(req.files[i].filename)
-    }
-    images.save();
-    return res.send(images)
   } catch (error) {
     return res.status(400).send(error)
   }
