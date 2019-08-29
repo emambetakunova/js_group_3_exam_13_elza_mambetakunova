@@ -49,17 +49,6 @@ export const addPlace = data => {
   }
 };
 
-export const addImagesForPlace = (data, id) => {
-  return dispatch => {
-    return axios.post(`/places/addPhoto/${id}`, data).then(
-      response => {
-        dispatch(fetchOnePlaceSuccess(response.data));
-        dispatch(push(`/places/${id}`));
-        NotificationManager.success('Photos added')
-      })
-  }
-};
-
 export const deletePlace = (id) => {
   return dispatch => {
     return axios.delete('/places/' + id).then(
