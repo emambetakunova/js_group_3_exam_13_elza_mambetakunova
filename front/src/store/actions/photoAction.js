@@ -14,29 +14,29 @@ const fetchPhotosFailure = error => ({type: FETCH_PHOTO_FAILURE, error});
 const deleteImageSuccess = () => ({type: DELETE_IMAGE_SUCCESS});
 const deleteImageFailure = error => ({type: DELETE_IMAGE_FAILURE, error});
 
-export const fetchPhotos = (id) => {
+export const fetchPhotos = () => {
   return dispatch => {
-    return axios.get('/places/' + id).then(
+    return axios.get('/photo').then(
       response => dispatch(fetchPhotosSuccess(response.data)),
       error => dispatch(fetchPhotosFailure(error))
-    )
+    );
   };
 };
 
-export const addPhoto = (data, id) => {
+export const addPhoto = (data, placeId) => {
   return dispatch => {
-    return axios.post(`/places/addPhoto/${id}`, data).then(
+    return axios.post(`/places/${placeId}/addPhoto`, data).then(
       response => {
         dispatch(fetchPhotosSuccess());
-        dispatch(fetchPhotos(id));
+        dispatch(fetchPhotos());
         NotificationManager.success('Photos added')
       })
   }
 };
 
-export const deleteImage = (id) => {
+export const deleteImage = (imageId) => {
   return dispatch => {
-    return axios.delete('/places/' + id).then(
+    return axios.delete('/photo/' + imageId).then(
       () => {
         dispatch(deleteImageSuccess());
         NotificationManager.success('Deleted successfully');
