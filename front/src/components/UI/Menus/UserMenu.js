@@ -1,22 +1,13 @@
 import React from 'react';
-import {DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown} from "reactstrap";
-import {NavLink} from "react-router-dom";
+import {Navbar, NavLink} from "reactstrap";
+import {NavLink as RouterNavLink} from "react-router-dom";
 
 const UserMenu = ({user, logout}) => (
-  <UncontrolledDropdown nav inNavbar>
-    <DropdownToggle nav caret>
-      Hello, {user.username}
-    </DropdownToggle>
-    <DropdownMenu right>
-      <DropdownItem>
-        <NavLink to='/add'>Add new place</NavLink>
-      </DropdownItem>
-      <DropdownItem divider />
-      <DropdownItem onClick={logout}>
-        Log out
-      </DropdownItem>
-    </DropdownMenu>
-  </UncontrolledDropdown>
+  <Navbar>
+    <NavLink tag={RouterNavLink} rel="nofollow" to={'/add'}>Add new place</NavLink>
+    <NavLink tag={RouterNavLink} rel="nofollow" to={'/'}>Hello, {user.username}</NavLink>
+    <NavLink tag={RouterNavLink} rel="nofollow" to="/" className="user" onClick={logout}>Log out</NavLink>
+  </Navbar>
 );
 
 export default UserMenu;
