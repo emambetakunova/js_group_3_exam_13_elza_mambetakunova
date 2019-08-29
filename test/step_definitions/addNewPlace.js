@@ -2,14 +2,11 @@ const {I} = inject();
 // Add in your custom step files
 
 When('я нажимаю кнопку {string} и заполняю данные', (text) => {
-  I.click('//a[@class=dropdown-toggle nav-link]');
-  I.wait(2);
-  I.click('//div[@class=dropdown-menu dropdown-menu-right show]');
-  I.click(`//input[@id='title']`);
-  I.fillField( "Hot kebab");
-  I.click(`//textarea[@id='description']`);
-  I.fillField("Hot kebab");
-  I.click('//button[@class=btn btn-primary]');
+  I.wait(10);
+  I.click("//a[contains(text(),'Add new place')]");
+  I.fillField( "//input[@id='title']", "Hot kebab");
+  I.fillField("//textarea[@id='description']", "Hot kebab");
+  I.click('//button[.="Submit new place"]');
 });
 
 Then('я вижу ответ от сервера {string}', text => {
