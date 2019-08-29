@@ -13,9 +13,7 @@ const PhotoSchema = new Schema({
     ref: 'Place',
     required: true
   },
-  images: {
-    type: Array
-  },
+  image: String
 
 });
 
