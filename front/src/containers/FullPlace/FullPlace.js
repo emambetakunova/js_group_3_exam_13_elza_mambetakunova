@@ -13,7 +13,7 @@ import FormElement from "../../components/UI/Form/FormElement";
 
 import './FullPlace.css';
 
-import {addPhoto, fetchPhotos} from "../../store/actions/photoAction";
+import {addPhoto, deleteImage, fetchPhotos} from "../../store/actions/photoAction";
 
 class FullPlace extends Component {
   state = {
@@ -93,13 +93,13 @@ class FullPlace extends Component {
     this.setState({review: '', overallRatings: 0, qualityRating: 0, serviceRating: 0, interiorRating: 0,})
   };
 
-  // deleteImages = (id) => {
-  //   this.props.deleteImage(id).then(
-  //     () => {
-  //       this.props.fetchPhotos();
-  //     }
-  //   )
-  // };
+  deleteImage = (id) => {
+    this.props.deleteImage(id).then(
+      () => {
+        this.props.fetchPhotos();
+      }
+    )
+  };
 
   deleteReviews = (id) => {
     this.props.deleteReview(id).then(
@@ -110,7 +110,7 @@ class FullPlace extends Component {
   };
 
   render() {
-    const photos = this.props.photos;
+    const photos = this.props.photos || [];
     const reviews = this.props.reviews || [];
     let allRating;
     let quality = 0;
@@ -130,26 +130,27 @@ class FullPlace extends Component {
           <p>{this.props.place.description}</p>
         </div>
         <div>
-          <PlaceThumbnail image={this.props.place.image}/>
+          <PlaceThumbnail image={this.props.place.avatar}/>
         </div>
         <hr/>
+        {this.props.user ?
         <div>
           <h3>Images</h3>
-          {photos && photos.images.map((image, index) => {
+          {photos && photos.map((imageObj, index) => {
             return <Fragment
               key={index}>
               <img
                 key={index}
                 alt='place images'
-                src={`${apiURL}/uploads/${image}`}
+                src={`${apiURL}/uploads/${imageObj.image}`}
                 className="images"
               />
-              {/*{this.props.user && this.props.user.role === 'admin' ? <ButtonGroup>*/}
-                {/*<Button color="info" onClick={() => this.deleteImages(index)}>Delete image</Button>*/}
-              {/*</ButtonGroup> : null}*/}
+              {this.props.user && this.props.user.role === 'admin' ? <ButtonGroup>
+                <Button color="info" onClick={() => this.deleteImage(imageObj._id)}>Delete image</Button>
+              </ButtonGroup> : null}
             </Fragment>
           })}
-        </div>
+        </div> : null}
         <hr/>
         <div>
           <h3>Average ratings</h3>
@@ -200,9 +201,8 @@ class FullPlace extends Component {
         <div>
           <h3>Reviews</h3>
           {reviews.map((review, index) => {
-            console.log(review);
             return <div key={index}>
-              <span><strong>Title: </strong>{review.user.username}</span>
+              <span><strong>User: </strong>{review.user.username}</span>
               <p><strong>Description: </strong>{review.message}</p>
               {this.props.user && this.props.user.role === 'admin' ? <ButtonGroup>
               <Button color="info" onClick={() => this.deleteReviews(review._id)}>Delete review</Button>
@@ -243,6 +243,7 @@ class FullPlace extends Component {
           })}
         </div>
         <hr/>
+        {this.props.user ?
         <Form onSubmit={this.submitFormHandler}>
           <FormElement
             propertyName="review"
@@ -298,8 +299,9 @@ class FullPlace extends Component {
               </Button>
             </Col>
           </FormGroup>
-        </Form>
+        </Form> : null}
         <hr/>
+        {this.props.user ?
         <Form onSubmit={this.submitFormHandlerFiles}>
           <FormElement
             propertyName="images"
@@ -316,7 +318,7 @@ class FullPlace extends Component {
               </Button>
             </Col>
           </FormGroup>
-        </Form>
+        </Form> : null}
       </Fragment>
     );
   }
@@ -336,6 +338,7 @@ const mapDispatchToProps = dispatch => ({
   addPhoto: (data, id) => dispatch(addPhoto(data, id)),
   addReview: (data, id) => dispatch(addReview(data, id)),
   deleteReview: id => dispatch(deleteReview(id)),
+  deleteImage: id => dispatch(deleteImage(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FullPlace);
