@@ -11,24 +11,15 @@ const PlaceSchema = new Schema({
     type: String,
     require: true
   },
-  image: {
+  avatar: {
     type: String,
     require: true
-  },
-  images: {
-    type: Array
   },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  },
-  overallRatings: {
-    type: Number
-  },
-  qualityRating:  Number,
-  serviceRating: Number,
-  interiorRating: Number
+  }
 });
 
 const Place = mongoose.model('Place', PlaceSchema);
