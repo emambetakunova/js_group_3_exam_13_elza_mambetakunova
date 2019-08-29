@@ -14,12 +14,12 @@ const fetchReviewsFailure = error => ({type: FETCH_REVIEW_FAILURE, error});
 const deleteReviewSuccess = () => ({type: DELETE_REVIEW_SUCCESS});
 const deleteReviewFailure = error => ({type: DELETE_REVIEW_FAILURE, error});
 
-export const fetchReviews = (id) => {
+export const fetchReviews = () => {
   return dispatch => {
-    return axios.get('/review/' + id).then(
+    return axios.get('/review').then(
       response => dispatch(fetchReviewsSuccess(response.data)),
       error => dispatch(fetchReviewsFailure(error))
-    )
+    );
   };
 };
 
@@ -37,7 +37,7 @@ export const addReview = (data, id) => {
 
 export const deleteReview = (id) => {
   return dispatch => {
-    return axios.delete('/review/' + id).then(
+    return axios.delete(`/review/${id}`).then(
       () => {
         dispatch(deleteReviewSuccess());
         NotificationManager.success('Deleted successfully');
