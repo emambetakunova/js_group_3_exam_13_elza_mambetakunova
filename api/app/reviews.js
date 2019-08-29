@@ -5,17 +5,17 @@ const auth = require('../middleWare/auth');
 const permit = require('../middleWare/permit');
 const Review = require('../models/Review');
 
-router.get('/:id', async (req, res) => {
-  try {
-    const review = await Review.find({place: req.params.id}).populate('user');
-    return res.send(review)
-  } catch (error) {
-    return res.status(400).send(error)
-  }
+router.get('/', async (req, res) => {
+  Review.find().populate('user')
+    .then(result => {
+      if (result) return res.send(result);
+      res.sendStatus(404)
+    })
+    .catch(error => res.status(500).send(error));
+
 });
 
-
-router.post('/:id', [auth], async (req, res) => {
+router.post('/:id', auth, async (req, res) => {
   try {
     const message = new Review({
       data: new Date().toLocaleString("ru-RU"),
